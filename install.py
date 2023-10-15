@@ -1,4 +1,4 @@
-import launch
+import neko
 import os
 import pkg_resources
 
@@ -20,9 +20,9 @@ with open(req_file) as file:
                 package_name, package_version = package.split('==')
                 installed_version = pkg_resources.get_distribution(package_name).version
                 if installed_version != package_version:
-                    launch.run_pip(f"install {package}", f"startfk-infinite-image-browsing requirement: changing {package_name} version from {installed_version} to {package_version}")
-            elif not launch.is_installed(dist2package(package)):
-                launch.run_pip(f"install {package}", f"startfk-infinite-image-browsing requirement: {package}")
+                    neko.run_pip(f"install {package}", f"startfk-infinite-image-browsing requirement: changing {package_name} version from {installed_version} to {package_version}")
+            elif not neko.is_installed(dist2package(package)):
+                neko.run_pip(f"install {package}", f"startfk-infinite-image-browsing requirement: {package}")
         except Exception as e:
             print(e)
             print(f'Warning: Failed to install {package}, something may not work.')
